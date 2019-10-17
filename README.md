@@ -107,6 +107,9 @@ The complete configuration is a subset of
 cradle:
   cabal:
     component: "optional component name"
+  cabal:
+    - path: ./
+      component: "component name"
   stack:
   bazel:
   obelisk:
@@ -160,6 +163,33 @@ cradle:
       config: { cradle: {cabal: {component: "lib:hie-bios"}} }
     - path: "./test"
       config: { cradle: {cabal: {component: "test"}} }
+    - path: "./test/test-files"
+      config: { cradle: none }
+```
+
+For cabal projects there is a shorthand to specify how to load each component.
+
+```
+cradle:
+  cabal:
+    - path: "./src"
+      component: "lib:hie-bios"
+    - path: "./test"
+      component: "test"
+```
+
+Remember you can combine this shorthand with more complicated configuration
+as well.
+
+```
+cradle:
+  multi:
+    - path: "./"
+      config: { cradle: {cabal:
+                          - path: "./src"
+                            component: "lib:hie-bios"
+                          - path: "./test"
+                            component: "test"}}
     - path: "./test/test-files"
       config: { cradle: none }
 ```

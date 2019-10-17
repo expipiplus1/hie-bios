@@ -24,6 +24,8 @@ main = defaultMain $
     assertParser "multi.yaml" (noDeps (Multi [("./src", CradleConfig [] (Cabal (Just "lib:hie-bios")))
                                              , ("./test", CradleConfig [] (Cabal (Just "test")) ) ]))
 
+    assertParser "cabal-multi.yaml" (noDeps (CabalMulti [("./src", "lib:hie-bios")
+                                                    ,("./", "lib:hie-bios")]))
 
 
 assertParser :: FilePath -> Config -> Assertion
